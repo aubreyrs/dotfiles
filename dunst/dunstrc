@@ -1,0 +1,31 @@
+[global]
+    font = JetBrains Mono 10
+    frame_width = 2
+    frame_color = "#cba6f7"
+    separator_color = frame
+    width = 300
+    offset = 10x30
+    padding = 8
+    horizontal_padding = 8
+    text_icon_padding = 0
+    markup = full
+    format = "<b>%s</b>\n%b"
+    mouse_left_click = close_current
+    mouse_middle_click = do_action
+    mouse_right_click = close_all
+
+[urgency_low]
+    background = "#1e1e2e"
+    foreground = "#cdd6f4"
+    timeout = 5
+
+[urgency_normal]
+    background = "#1e1e2e"
+    foreground = "#cdd6f4"
+    timeout = 10
+
+[urgency_critical]
+    background = "#1e1e2e"
+    foreground = "#cdd6f4"
+    frame_color = "#fab387"
+    timeout = 0

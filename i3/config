@@ -1,0 +1,113 @@
+set $bg_dim #181825
+set $bg0 #1e1e2e
+set $bg1 #313244
+set $bg2 #45475a
+set $bg3 #585b70
+set $bg4 #6c7086
+set $bg5 #7f849c
+set $bg_red #f38ba8
+set $bg_visual #cba6f7
+set $bg_yellow #f9e2af
+set $bg_green #a6e3a1
+set $bg_blue #89b4fa
+set $red #f38ba8
+set $orange #fab387
+set $yellow #f9e2af
+set $green #a6e3a1
+set $blue #89b4fa
+set $aqua #94e2d5
+set $purple #cba6f7
+set $fg #cdd6f4
+set $gray0 #6c7086
+set $gray1 #7f849c
+set $gray2 #9399b2
+
+client.focused $purple $bg0 $fg $purple $purple
+client.focused_inactive $bg2 $bg0 $fg $bg2 $bg2
+client.unfocused $bg1 $bg0 $gray2 $bg1 $bg1
+client.urgent $red $bg0 $fg $red $red
+client.placeholder $bg3 $bg0 $fg $bg3 $bg3
+client.background $bg0
+
+set $mod Mod1
+set $wallpaper /home/aubrey/Wallpapers/fog_forest_alt_2.png
+
+font pango:monospace 10
+
+exec --no-startup-id dex --autostart --environment i3
+exec --no-startup-id nm-applet
+exec --no-startup-id feh --bg-scale $wallpaper
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
+floating_modifier $mod
+tiling_drag modifier titlebar
+
+bindsym $mod+Return exec kitty
+bindsym $mod+Shift+q kill
+bindsym Control+x exec --no-startup-id flameshot gui
+bindsym Control+Space exec "rofi -modi drun,run -show drun"
+
+new_window pixel 2
+new_float pixel 2
+
+bindsym $mod+d exec --no-startup-id dmenu_run
+bindsym $mod+Tab exec --no-startup-id rofi -show drun
+
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+bindsym $mod+ctrl+Left move left
+bindsym $mod+ctrl+Down move down
+bindsym $mod+ctrl+Up move up
+bindsym $mod+ctrl+Right move right
+
+bindsym $mod+h split h
+bindsym $mod+v split v
+bindsym Ctrl+$mod+x fullscreen toggle
+
+bindsym $mod+l layout stacking
+bindsym $mod+p layout tabbed
+bindsym $mod+o layout toggle split
+
+bindsym $mod+space floating toggle
+bindsym $mod+a focus parent
+
+set $ws1 "1: 1"
+set $ws2 "2: 2"
+set $ws3 "3: 3"
+set $ws4 "4: 4"
+set $ws5 "5: 5"
+
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+
+bindsym $mod+Ctrl+c exec --no-startup-id xclip -selection clipboard
+bindsym $mod+Ctrl+v exec --no-startup-id xclip -selection clipboard -o
+
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Exit i3?' -B 'Yes' 'i3-msg exit'"
+
+mode "resize" {
+    bindsym $mod+q resize shrink width 10 px or 10 ppt
+    bindsym $mod+e resize grow height 10 px or 10 ppt
+    bindsym $mod+w resize shrink height 10 px or 10 ppt
+    bindsym $mod+s resize grow width 10 px or 10 ppt
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+gaps inner 20
+gaps outer 8
+gaps top 5
